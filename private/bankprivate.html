@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       class Bank {
+    #namaBank;
+    #kantorCabang;
+
+    constructor(namaBank) {
+        this.#namaBank = namaBank;
+        this.#kantorCabang = new Set();
+    }
+
+    tambahKantorCabang(cabang) {
+        if (this.#kantorCabang.has(cabang)) throw new Error("Kantor Cabang already exists");
+        this.#kantorCabang.add(cabang);
+    }
+
+    hapusKantorCabang(cabang) {
+        this.#kantorCabang.delete(cabang);
+    }
+
+    tampilkanKantorCabang() {
+        console.log(`Kantor Cabang ${this.#namaBank}:, [...this.#kantorCabang]`);
+    }
+}
+
+const bank = new Bank("Bank ABC");
+bank.tambahKantorCabang("Jakarta");
+bank.tambahKantorCabang("Bandung");
+bank.hapusKantorCabang("Bandung");
+bank.tampilkanKantorCabang();
+    </script>
+</body>
+</html>

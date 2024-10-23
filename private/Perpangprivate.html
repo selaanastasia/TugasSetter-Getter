@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class PersegiPanjang {
+    #panjang;
+    #lebar;
+
+    constructor(panjang, lebar) {
+        if (panjang <= 0 || lebar <= 0) throw new Error("Panjang and lebar must be greater than 0");
+
+        this.#panjang = panjang;
+        this.#lebar = lebar;
+    }
+
+    get panjang() {
+        return this.#panjang;
+    }
+
+    get lebar() {
+        return this.#lebar;
+    }
+
+    hitungLuas() {
+        return this.#panjang * this.#lebar;
+    }
+
+    hitungKeliling() {
+        return 2 * (this.#panjang + this.#lebar);
+    }
+}
+
+const pp = new PersegiPanjang(5, 3);
+console.log("Luas:", pp.hitungLuas());
+console.log("Keliling:", pp.hitungKeliling());
+    </script>
+</body>
+</html>

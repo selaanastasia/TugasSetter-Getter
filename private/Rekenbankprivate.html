@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         class RekeningBank {
+    static rekeningSet = new Set();
+    #nomorRekening;
+    #saldo;
+
+    constructor(nomorRekening, saldo) {
+        if (RekeningBank.rekeningSet.has(nomorRekening)) throw new Error("Nomor Rekening already exists");
+
+        this.#nomorRekening = nomorRekening;
+        this.#saldo = saldo;
+        RekeningBank.rekeningSet.add(nomorRekening);
+    }
+
+    get saldo() {
+        return this.#saldo;
+    }
+
+    setorUang(amount) {
+        this.#saldo += amount;
+    }
+
+    tarikUang(amount) {
+        if (amount > this.#saldo) throw new Error("Saldo tidak cukup");
+        this.#saldo -= amount;
+    }
+
+    showSaldo() {
+        console.log(`Saldo Rekening ${this.#nomorRekening}: ${this.#saldo}`);
+    }
+}
+
+const rekening1 = new RekeningBank("123456", 1000);
+rekening1.setorUang(500);
+rekening1.tarikUang(200);
+rekening1.showSaldo();
+    </script>
+</body>
+</html>

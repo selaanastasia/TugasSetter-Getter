@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Book {
+    #title;
+    #author;
+    #year;
+
+    constructor(title, author, year) {
+        if (!title) throw new Error("Title cannot be empty");
+
+        this.#title = title;
+        this.#author = author;
+        this.#year = year;
+    }
+
+    bookDetails() {
+        console.log(`Title: ${this.#title}, Author: ${this.#author}, Year: ${this.#year}`);
+    }
+}
+
+class Ebook extends Book {
+    #price;
+
+    constructor(title, author, year, price) {
+        super(title, author, year);
+        if (typeof price !== 'number') throw new Error("Price must be a number");
+
+        this.#price = price;
+    }
+
+    bookDetails() {
+        super.bookDetails();
+        console.log(`Price: $${this.#price}`);
+    }
+}
+
+const ebook = new Ebook("Eloquent JavaScript", "Marijn Haverbeke", 2018, 30);
+ebook.bookDetails();
+    </script>
+</body>
+</html>

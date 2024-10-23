@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Person {
+    #firstName;
+    #lastName;
+    #age;
+
+    constructor(firstName, lastName, age) {
+        if (!firstName || !lastName) throw new Error("First and Last Name cannot be empty");
+        if (age <= 0) throw new Error("Age must be greater than 0");
+
+        this.#firstName = firstName;
+        this.#lastName = lastName;
+        this.#age = age;
+    }
+
+    get firstName() {
+        return this.#firstName;
+    }
+
+    get lastName() {
+        return this.#lastName;
+    }
+
+    get age() {
+        return this.#age;
+    }
+
+    showDetails() {
+        console.log(`Name: ${this.#firstName} ${this.#lastName}, Age: ${this.#age}`);
+    }
+}
+
+const person1 = new Person('John', 'Doe', 25);
+const person2 = new Person('Jane', 'Smith', 30);
+
+person1.showDetails();
+person2.showDetails();
+    </script>
+</body>
+</html>

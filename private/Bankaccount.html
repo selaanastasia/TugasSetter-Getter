@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class BankAccount {
+    static rekeningSet = new Set();
+    #nomorRekening;
+    #namaNasabah;
+    #saldo;
+
+    constructor(nomorRekening, namaNasabah, saldo) {
+        if (BankAccount.rekeningSet.has(nomorRekening)) throw new Error("Nomor Rekening already exists");
+        if (BankAccount.rekeningSet.has(namaNasabah)) throw new Error("Nama Nasabah already exists");
+
+        this.#nomorRekening = nomorRekening;
+        this.#namaNasabah = namaNasabah;
+        this.#saldo = saldo;
+        BankAccount.rekeningSet.add(nomorRekening);
+        BankAccount.rekeningSet.add(namaNasabah);
+    }
+
+    setor(amount) {
+        this.#saldo += amount;
+    }
+
+    tarik(amount) {
+        if (amount > this.#saldo) throw new Error("Saldo tidak cukup");
+        this.#saldo -= amount;
+    }
+
+    transfer(keRekening, amount) {
+        if (amount > this.#saldo) throw new Error("Saldo tidak cukup");
+        this.#saldo -= amount;
+        keRekening.#saldo += amount;
+    }
+
+    tampilkanSaldo() {
+        console.log(`Saldo Nasabah ${this.#namaNasabah}: ${this.#saldo}`);
+    }
+}
+
+const acc1 = new BankAccount("123456", "John Doe", 1000);
+const acc2 = new BankAccount("789012", "Jane Smith", 1500);
+
+acc1.setor(500);
+acc1.transfer(acc2);
+    </script>
+</body>
+</html>

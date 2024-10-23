@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Employee {
+    #name;
+    #gaji;
+
+    constructor(name, gaji) {
+        if (typeof name !== 'string') throw new Error("Name must be a string");
+        if (gaji <= 0) throw new Error("Gaji must be greater than 0");
+
+        this.#name = name;
+        this.#gaji = gaji;
+    }
+
+    hitungGajiTahunan() {
+        return this.#gaji * 12;
+    }
+}
+
+class Manager extends Employee {
+    #departemen;
+
+    constructor(name, gaji, departemen) {
+        super(name, gaji);
+        this.#departemen = departemen;
+    }
+
+    hitungGajiTahunan() {
+        return super.hitungGajiTahunan() * 1.1; // +10% bonus
+    }
+}
+
+const manager1 = new Manager("Alice", 5000, "HR");
+const manager2 = new Manager("Bob", 6000, "IT");
+
+console.log("Gaji Tahunan Manager 1:", manager1.hitungGajiTahunan());
+console.log("Gaji Tahunan Manager 2:", manager2.hitungGajiTahunan());
+    </script>
+</body>
+</html>
